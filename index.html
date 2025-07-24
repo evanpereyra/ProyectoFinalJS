@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>EntregaFinal</title>
+</head>
+<body>
+    
+    <header>
+      <h1>Veterinaria</h1>
+    </header>
+    
+    <section id="login" class="form-login">
+        <h5>LOGIN</h5>
+        <input id="username" class="control" type="text" name="usuario" value="" placeholder="jperez">
+        <input id="password" class="control" type="password" name="contrasena" value="" placeholder="contrasenia">
+        <input id="btnLogin" class="boton" type="submit" name="" value="Ingresar">
+        <p id="olvidar"><a href="#">¿Olvidaste la contraseña?</a></p>
+        <p id="message"></p>
+    </section>
+
+    <div id="panel" class="seccion">
+    <h2>Bienvenido, <span id="clienteNombre"></span></h2>
+    <button id="btnLogout" type="button">Cerrar sesión</button>
+
+    <h3>Mascotas</h3>
+    <div>
+      <input type="text" id="nombreMascota" placeholder="Nombre mascota" />
+      <select id="tipoMascota">
+        <option value="Perro">Perro</option>
+        <option value="Gato">Gato</option>
+        <option value="Otro">Otro</option>
+      </select>
+      <button id="btnAltaMascota" type="button">Agregar</button>
+    </div>
+    <div id="listaMascotas"></div>
+
+    <h3>Turnos</h3>
+    <div>
+      <input type="date" id="fechaTurno" />
+      <select id="mascotaTurno"></select>
+      <button id="btnReserva" type="button">Reservar turno</button>
+    </div>
+    <div id="listaTurnos"></div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="funciones/script.js"></script>
+    
+</body>
+</html>

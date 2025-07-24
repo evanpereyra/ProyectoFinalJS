@@ -1,0 +1,96 @@
+[ 
+         {
+           "nombre": "Administrador",
+           "apellido": "Administrador",
+           "usuario": "Admin",
+           "contrasenia": "Admin"          
+
+         }, 
+
+         {
+           "dni":42282463,
+           "nombre": "Juan",
+           "apellido": "Perez",
+           "usuario": "jperez",
+           "contrasenia": 2451813,
+           "mascotas": [
+             {
+                "nombre": "FIRULAIS",
+                "tipo": "perro",
+                "edad": 4
+             },
+             {
+                "nombre": "ROCKY", 
+                "tipo": "perro",
+                "edad": 5
+             }
+           ]
+               
+
+         }
+         , 
+
+         {
+          "dni": 25832704 , 
+          "nombre": "Mérida Elionor",
+          "apellido": "Altamira",
+          "usuario": "mealtamira",
+          "contrasenia": 3635070,   
+          "mascotas": [
+            {
+              "nombre": "TOBY", 
+              "tipo": "perro",
+              "edad": 6
+            }
+          ]  
+         }
+         ,
+
+         {
+          "dni": 43385259,
+          "nombre": "Pedro Salvador",
+          "apellido": "Lopez",
+          "usuario": "pslopez",
+          "contrasenia": 4818327,
+          "mascotas": [
+          {
+             "nombre": "LUNA", 
+             "tipo": "gato",
+             "edad": 4
+          },
+          {
+            "nombre": "TITO", 
+            "tipo": "loro",
+            "edad": 2
+          },
+          {
+           "nombre": "PELUSA", 
+           "tipo": "conejo",
+           "edad": 1
+          }]       
+
+         }
+         , 
+
+         {
+          "dni": 36666997, 
+          "nombre": "Maria Aurora",
+          "apellido": "Sleeper",
+          "usuario": "masleeper",
+          "contrasenia": 2462763,
+          "mascotas": [
+             {
+                "nombre": "MISHI", 
+                "tipo": "gato",
+                "edad": 2
+            },
+            {
+                "nombre": "COPITO", 
+                "tipo": "conejo",
+                "edad": 1
+            }
+          ]
+
+         }
+
+    ]
