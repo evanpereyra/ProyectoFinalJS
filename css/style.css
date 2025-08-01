@@ -3,7 +3,10 @@
   margin: 12px;
   box-sizing: border-box;
   font-family: "Lemonada", cursive;
-  background-image: url('../imagen/fondo2.jpg');
+  /*background-image: url('../imagen/fondo2.jpg');*/
+  background-image: url('https://trianglify.io/p/w:1440!h:900!x:GnBu!v:0.23!c:0.179!s:49zvg!f:sh!i:0.30');
+  background-size: cover;
+  
 }
 
 
@@ -83,22 +86,20 @@ body h1 {
   border-bottom: 1px solid;
 }
 
-/*
-.form-login a:hover {
-  text-decoration: underline;
-}
-*/
+
 .turnero{
 
-  width: 800px;
-  height: 400px;
-  background: #e0f0f5;
-  margin: auto;
-  margin-top: 180px;
-  box-shadow: 7px 13px 37px #eb0909;
-  padding: 20px 30px;
-  /*border-top: 4px solid #017bab;*/
-  color: #e0f0f5;
+  max-width: 400px;
+  width: 100%;
+  background: #ffffff;
+  margin: 60px auto 0 auto;
+  box-shadow: 0 8px 32px 0 #1f268726;
+  padding: 32px 28px;
+  border-radius: 16px;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 
 }
 
@@ -107,29 +108,17 @@ body h1 {
   color: #e0f0f5;
 }
 
-
-/* cartel*/
-
-
-.bloc-logo {
-    position: relative;
-    width: 130px;
-    height: 49px;
-    float: left;
+button{
+  background: #017bab;
+  color: #e0f0f5;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
 }
 
-.bloc-logo canvas,
-.bloc-logo .logo-mask {
-    display: block;
-    width: 130px;
-    height: 49px;
+label{
+  color: #e0f0f5;
 }
 
-.bloc-logo .logo-mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-size: 130px;
-    background-image: url("../img/logo-mask.png");
-    text-indent: -9999px;
-}
+
+

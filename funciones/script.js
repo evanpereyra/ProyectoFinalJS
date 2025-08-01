@@ -44,9 +44,6 @@ function asignarValores(u) {
 
 
 
-
-
-
 /* botones */
 
 const botonLogout = document.getElementById('btnLogout');
@@ -54,9 +51,9 @@ const botonAgregar = document.getElementById('btnAltaMascota');
 const botonReserva = document.getElementById('btnReserva');
 
 /* eventos */
-const olvidarPass = document.getElementById('olvidar')
+const olvidarPass = document.getElementById('olvidarPass');
 
-/*
+
 olvidarPass.addEventListener('click', () => {
   Swal.fire("usa jperez, pass123");
 
@@ -67,7 +64,7 @@ olvidarPass.addEventListener('click', () => {
   console.log("pass", document.getElementById("password").value)
 }
 )
-*/
+
 
 /* Funcion login*/
 document.getElementById('panel').style.display = 'none';
@@ -111,23 +108,6 @@ function login() {
 
     }
     Swal.fire(mensaje);
-    /*mostrar mensaje */
-    /*
-    Swal.fire({
-    title: mensaje,
-    width: 600,
-    padding: "3em",
-    color: "#716add",
-    background: "#fff url(/images/trees.png)",
-    backdrop: `
-      rgba(0,0,123,0.4)
-      url("/images/nyan-cat.gif")
-      left top
-      no-repeat
-    `
-  }).then ((resultado) =>{ mostrarPanel()
-  });
-  */
     mostrarPanel()
   }
 }
@@ -162,7 +142,8 @@ function mostrarPanel() {
 botonAgregar.addEventListener('click', () => {
   const nombre = document.getElementById('nombreMascota').value.trim();
   const tipo = document.getElementById('tipoMascota').value;
-  if (!nombre) return alert('Ingresá el nombre de la mascota');
+  if (!nombre) return Swal.fire('Ingresá el nombre de la mascota') 
+  //alert('Ingresá el nombre de la mascota');
 
   const mascotas = obtenerMascotas();
   mascotas.push({ nombre, tipo });
@@ -220,7 +201,47 @@ function actualizarMascotas() {
 
     const btn = document.createElement('button');
     btn.textContent = 'Eliminar';
-    btn.addEventListener('click', () => eliminarMascota(i));
+    btn.addEventListener('click', () => {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        title: "Eliminar",
+        text: "Vas a Borrar a " + mascota.nombre,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Elininar",
+        cancelButtonText: "Cancelar",
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+          swalWithBootstrapButtons.fire({
+            title: "Eliminado",
+            text: "mascota " + mascota.nombre + " fue eliminada",
+            icon: "success"
+            
+          });
+          eliminarMascota(i)
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelado",
+            text: "mascota " + mascota.nombre + " sigue igual",
+            icon: "error"
+          });
+        }
+      });
+    } 
+    //eliminarMascota(i)
+  
+  );
 
     div.appendChild(nombreHTML);
     div.appendChild(tipoHTML);
@@ -266,10 +287,11 @@ function reservarTurno() {
   const fecha = document.getElementById('fechaTurno').value;
   const mascota = document.getElementById('mascotaTurno').value;
   console.log("fecha y mascota", fecha + mascota)
-  if (!fecha || !mascota) return alert('Completá todos los campos');
+  if (!fecha || !mascota) return Swal.fire('Completá todos los campos');
+
+  //alert('Completá todos los campos');
 
   const turnos = obtenerTurnos();
-  //const turnos = [];
   turnos.push({ fecha, mascota });
   guardarTurnos(turnos);
   actualizarTurnos();
