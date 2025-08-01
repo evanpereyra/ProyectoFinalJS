@@ -21,6 +21,8 @@ import { hash } from "../metodos/metodo.js"
 /* variables globales */
 let cliente = null;
 var users
+//const fecha = moment().format('DD/MM/YYYY');
+const ahora = dayjs();
 
 
 const url = './datos/usuario.json'
@@ -212,7 +214,6 @@ function actualizarMascotas() {
       swalWithBootstrapButtons.fire({
         title: "Eliminar",
         text: "Vas a Borrar a " + mascota.nombre,
-        icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Elininar",
         cancelButtonText: "Cancelar",
@@ -223,8 +224,7 @@ function actualizarMascotas() {
           swalWithBootstrapButtons.fire({
             title: "Eliminado",
             text: "mascota " + mascota.nombre + " fue eliminada",
-            icon: "success"
-            
+                      
           });
           eliminarMascota(i)
         } else if (
@@ -234,7 +234,7 @@ function actualizarMascotas() {
           swalWithBootstrapButtons.fire({
             title: "Cancelado",
             text: "mascota " + mascota.nombre + " sigue igual",
-            icon: "error"
+           
           });
         }
       });
@@ -287,6 +287,8 @@ function reservarTurno() {
   const fecha = document.getElementById('fechaTurno').value;
   const mascota = document.getElementById('mascotaTurno').value;
   console.log("fecha y mascota", fecha + mascota)
+  console
+  if(fecha < ahora.format()) return Swal.fire('La fecha no puede ser menor a la fecha actual');
   if (!fecha || !mascota) return Swal.fire('Completá todos los campos');
 
   //alert('Completá todos los campos');
@@ -305,7 +307,7 @@ function actualizarTurnos() {
   obtenerTurnos().forEach((turno, i) => {
     const div = document.createElement('div');
     const btn = document.createElement('button');
-    div.textContent = `${turno.fecha} - ${turno.mascota}`;
+    div.textContent = `${dayjs(turno.fecha).format('DD/MM/YYYY')} - ${turno.mascota}`;
     cont.appendChild(div);
 
     btn.textContent = 'Eliminar';
@@ -322,7 +324,6 @@ function actualizarTurnos() {
       swalWithBootstrapButtons.fire({
         title: "Eliminar",
         text: "Vas a eliminar un turno",
-        icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Elininar",
         cancelButtonText: "Cancelar",
@@ -332,9 +333,7 @@ function actualizarTurnos() {
 
           swalWithBootstrapButtons.fire({
             title: "Eliminado",
-            text: "tu turno fue eliminado",
-            icon: "success"
-            
+            text: "tu turno fue eliminado",            
           });
           eliminarTurno(i)
         } else if (
@@ -344,8 +343,7 @@ function actualizarTurnos() {
           swalWithBootstrapButtons.fire({
             title: "Cancelado",
             text: "tu turno sigue igual",
-            icon: "error"
-          });
+           });
         }
       });
 
@@ -367,4 +365,6 @@ function actualizarTurnos() {
     actualizarTurnos();
  }
 
-
+function fechaTurno() {
+   
+}

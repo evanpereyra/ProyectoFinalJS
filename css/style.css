@@ -3,8 +3,8 @@
   margin: 12px;
   box-sizing: border-box;
   font-family: "Lemonada", cursive;
-  /*background-image: url('../imagen/fondo2.jpg');*/
-  background-image: url('https://trianglify.io/p/w:1440!h:900!x:GnBu!v:0.23!c:0.179!s:49zvg!f:sh!i:0.30');
+  background-color: #bc8f8f;
+ /* background: url('../imagen/fondo2.jpg') no-repeat center center fixed;*/
   background-size: cover;
   
 }
@@ -86,21 +86,17 @@ body h1 {
   border-bottom: 1px solid;
 }
 
-
-.turnero{
-
-  max-width: 400px;
-  width: 100%;
-  background: #ffffff;
-  margin: 60px auto 0 auto;
-  box-shadow: 0 8px 32px 0 #1f268726;
+#panel {
+  max-width: 600px;
+  margin: 40px auto 0 auto;
+  background: transparent;
+  box-shadow: 0 8px 32px 0 #16172526;
   padding: 32px 28px;
   border-radius: 16px;
   color: #222;
   display: flex;
   flex-direction: column;
   gap: 18px;
-
 }
 
 .panel h3 {
@@ -116,9 +112,44 @@ button{
   border-radius: 5px;
 }
 
-label{
-  color: #e0f0f5;
+
+
+h4{
+  color: #000000;
+  background-color: transparent;
+  font-size: 20px;
+
 }
 
 
 
+#panel div {
+ 
+  width: 100%;
+  border: 1px solid #333;
+  box-shadow: 8px 8px 5px #444;
+  padding: 8px 12px;
+  background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+
+}
+
+#listaTurnos div {
+  width: 95%;
+ 
+}
+
+#listaMascotas div {
+  width: 95%;
+
+}
+
+input {
+  background-color: transparent;
+}
+
+#selectTipoMascota{
+  background-color: none; 
+}
+strong {
+  background-color: transparent;
+}
