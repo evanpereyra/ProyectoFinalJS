@@ -14,15 +14,12 @@ import { cargarDatosClientes, cargarDatosMascotas } from "../datos/datos.js";
 import { hash } from "../metodos/metodo.js"
 
 
-
-
-//AbortController
-
 /* variables globales */
 let cliente = null;
 var users
-//const fecha = moment().format('DD/MM/YYYY');
+dayjs.locale('es');
 const ahora = dayjs();
+
 
 
 const url = './datos/usuario.json'
@@ -79,33 +76,23 @@ function login() {
   const username = document.getElementById("username").value;
   const password = hash(document.getElementById("password").value);
   let mensaje = ""
-  //const message = document.getElementById("message");
-
 
   cliente = users.find((u) => u["usuario"] === username && u["contrasenia"] === password)
-
-  //Swal.fire(cliente["usuario"]);
 
   if (!cliente) {
     Swal.fire("El usuario no existe");
 
   }
   if (cliente !== (null && undefined)) {
-
-    //Swal.fire("Inicio de sesión exitoso!");
-
-
     const loggedInUser = localStorage.getItem("loggedInUser");
     console.log(loggedInUser)
     if (loggedInUser === username) {
 
-      // document.getElementById("message").textContent = "Ya estás logueado como " + loggedInUser; // mensaje afuera
-      mensaje = "Ya estás logueado como " + loggedInUser;
+       mensaje = "Ya estás logueado como " + loggedInUser;
     }
     else {
       localStorage.setItem("User", JSON.stringify(cliente));
       localStorage.setItem("loggedInUser", cliente.usuario);
-      //  message.textContent = "Inicio de sesión exitoso!";
       mensaje = "Inicio de sesión exitoso!";
 
     }
@@ -136,7 +123,7 @@ function mostrarPanel() {
   document.getElementById('panel').style.display = 'block';
   buscarMascotasActuales();
   actualizarMascotas();
-  //    actualizarTurnos();
+  
 }
 
 /*agregar*/
@@ -145,8 +132,6 @@ botonAgregar.addEventListener('click', () => {
   const nombre = document.getElementById('nombreMascota').value.trim();
   const tipo = document.getElementById('tipoMascota').value;
   if (!nombre) return Swal.fire('Ingresá el nombre de la mascota') 
-  //alert('Ingresá el nombre de la mascota');
-
   const mascotas = obtenerMascotas();
   mascotas.push({ nombre, tipo });
   guardarMascotas(mascotas);
@@ -239,7 +224,7 @@ function actualizarMascotas() {
         }
       });
     } 
-    //eliminarMascota(i)
+   
   
   );
 
@@ -287,16 +272,21 @@ function reservarTurno() {
   const fecha = document.getElementById('fechaTurno').value;
   const mascota = document.getElementById('mascotaTurno').value;
   console.log("fecha y mascota", fecha + mascota)
-  console
+  
+
   if(fecha < ahora.format()) return Swal.fire('La fecha no puede ser menor a la fecha actual');
+  if(!esDiaHabil(fecha)) return Swal.fire('La fecha no es dia habil, escoja otra fecha')
   if (!fecha || !mascota) return Swal.fire('Completá todos los campos');
 
   //alert('Completá todos los campos');
 
   const turnos = obtenerTurnos();
-  turnos.push({ fecha, mascota });
+  const duplicados = turnos.find((t) => t["fecha"] === fecha && t["mascota"] === mascota)
+  if (!duplicados) turnos.push({ fecha, mascota });
   guardarTurnos(turnos);
   actualizarTurnos();
+  if (duplicados) return Swal.fire(mascota + ' ya tiene un turno reservado para la día: ' + dayjs(fecha).format('dddd')+ ' ' + dayjs(fecha).format('DD/MM/YYYY'));
+   
 }
 
 
@@ -307,7 +297,7 @@ function actualizarTurnos() {
   obtenerTurnos().forEach((turno, i) => {
     const div = document.createElement('div');
     const btn = document.createElement('button');
-    div.textContent = `${dayjs(turno.fecha).format('DD/MM/YYYY')} - ${turno.mascota}`;
+    div.textContent = `${dayjs(turno.fecha).format('DD/MM/YYYY')} - ${dayjs(turno.fecha).format('dddd')} - ${turno.mascota}`;
     cont.appendChild(div);
 
     btn.textContent = 'Eliminar';
@@ -337,7 +327,7 @@ function actualizarTurnos() {
           });
           eliminarTurno(i)
         } else if (
-          /* Read more about handling dismissals below */
+          
           result.dismiss === Swal.DismissReason.cancel
         ) {
           swalWithBootstrapButtons.fire({
@@ -365,6 +355,8 @@ function actualizarTurnos() {
     actualizarTurnos();
  }
 
-function fechaTurno() {
-   
+function esDiaHabil(diaTurno) {
+      return (dayjs(diaTurno).day() !== 0 && dayjs(diaTurno).day() !==  6)
+    
 }
+
